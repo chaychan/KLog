@@ -1,7 +1,5 @@
 package com.socks.library.klog;
 
-import android.util.Log;
-
 import com.socks.library.KLog;
 import com.socks.library.KLogUtil;
 
@@ -14,7 +12,7 @@ import org.json.JSONObject;
  */
 public class JsonLog {
 
-    public static void printJson(String tag, String msg, String headString) {
+    public static void printJson(int jsonLogType, String tag, String msg, String headString) {
 
         String message;
 
@@ -36,7 +34,7 @@ public class JsonLog {
         message = headString + KLog.LINE_SEPARATOR + message;
         String[] lines = message.split(KLog.LINE_SEPARATOR);
         for (String line : lines) {
-            Log.d(tag, "║ " + line);
+            BaseLog.printDefault(jsonLogType, tag, "║ " + line);
         }
         KLogUtil.printLine(tag, false);
     }

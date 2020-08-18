@@ -59,6 +59,7 @@ public final class KLog {
     private static String mGlobalTag;
     private static boolean mIsGlobalTagEmpty = true;
     private static boolean IS_SHOW_LOG = true;
+    private static int mJsonLogType = D;
 
     public static void init(boolean isShowLog) {
         IS_SHOW_LOG = isShowLog;
@@ -68,6 +69,10 @@ public final class KLog {
         IS_SHOW_LOG = isShowLog;
         mGlobalTag = tag;
         mIsGlobalTagEmpty = TextUtils.isEmpty(mGlobalTag);
+    }
+
+    public static void setJsonLogType(int type){
+        mJsonLogType = type;
     }
 
     public static void v() {
@@ -236,7 +241,7 @@ public final class KLog {
                 BaseLog.printDefault(type, tag, headString + msg);
                 break;
             case JSON:
-                JsonLog.printJson(tag, msg, headString);
+                JsonLog.printJson(mJsonLogType, tag, msg, headString);
                 break;
             case XML:
                 XmlLog.printXml(tag, msg, headString);
